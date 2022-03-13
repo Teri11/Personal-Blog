@@ -6,7 +6,7 @@ import os
 class Config:
   SQLALCHEMY_TRACK_MODIFICATIONS=True
   SECRET_KEY = os.environ.get('SECRET_KEY')
-
+  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:1234@localhost/bblog'
   #Simplemde cofigurations
   SIMPLEMDE_JS_IIFE = True
   SIMPLEMDE_USE_CDN = True
@@ -19,18 +19,20 @@ class Config:
   MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
   #PHOTOS UPLOAD CONFIGURATION
   UPLOADED_PHOTOS_DEST = 'app/static/photos'
-
+  @staticmethod
+  def init_app(app):
+        pass
 class ProdConfig(Config):
   SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
   # if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
   #   SQLALCHEMY_DATABASE_URI =SQLALCHEMY_DATABASE_URI.replace("postgres://","postgresql://",1)
 
 class DevConfig(Config):
-  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:123456789@localhost/blog'
+  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:1234@localhost/bblog'
   DEBUG = True
 
 class TestConfig(Config):
-  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:123456789@localhost/blog_test'
+  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:1234@localhost/bblog_test'
 
 config_options = {
   'production':ProdConfig,

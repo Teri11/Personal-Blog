@@ -16,8 +16,9 @@ from ..email import mail_message
 @main.route('/')
 def index():
     quote = get_quote()
-    blogs = Blog.query.order_by(Blog.time.desc())
-    return render_template('index.html', blogs=blogs,quote = quote)
+    # blogs = Blog.query.filter_by(title ='title').all()
+
+    return render_template('index.html',quote = quote)
 
 @main.route('/profile/<name>',methods = ['POST','GET'])
 @login_required
@@ -108,7 +109,7 @@ def subscribe():
     email = request.form.get('subscriber')
     new_subscriber = Subscriber(email = email)
     new_subscriber.save_subscriber()
-    mail_message("Subscribed to Niche Blogs","email/welcome_subscriber",new_subscriber.email,new_subscriber=new_subscriber)
+    mail_message("Subscribed to Personal Blogs","email/welcome_subscriber",new_subscriber.email,new_subscriber=new_subscriber)
     return redirect(url_for('main.index'))
 
 @main.route('/blog/<blog_id>/delete', methods = ['POST'])
