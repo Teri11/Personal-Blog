@@ -3,8 +3,11 @@
 <!-- Styles block -->
 {% block styles%}
 {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="../../static/css/index.css" />
 {% endblock %}
 
 {% block content %}
@@ -16,13 +19,12 @@
       <div class="card testimonial-card">
         <div class="card-img">
           {% if user.profile_pic_path %}
-          <img src="{{url_for('static',filename=user.profile_pic_path)}}" style="height:300px;border-radius: 1%"
-            class="card-img" alt="woman avatar">
+          <img  src="{{url_for('static',filename=user.profile_pic_path)}}" style="height:300px;border-radius: 1%"
+            class="card-img" alt="woman avatar"><br>
           {%else%}
-          <p>No profile picture</p>
+          <div><i class='fas fa-user-alt' style='font-size:120px;color: #584b53'></i></div>
           <div id="imgform">
-            <form action="{{url_for('main.update_pic',name=user.username)}}" method="post"
-              enctype="multipart/form-data">
+            <form action="{{url_for('main.profile',name=user.username)}}" method="post" enctype="multipart/form-data">
               <input type="file" name="photo" class="form-control" required>
               <input type="submit" class="btn btn-sm btn-info" id="submit">
             </form>
@@ -32,39 +34,40 @@
         </div>
 
         <div class="card-body">
-          <h5> {{user.username}}</h5>
-          {% if user.bio %}
+        {% if user.bio %}
           <p><i class="fas fa-quote-left"></i> {{user.bio}}</p>
           {%else%}
-          <p> {{user.username| capitalize}} has no bio </p>
           {% endif %}
           {% if user == current_user %}
           <div class="profpic">
-            <div id="updates">
-              <a href="{{url_for('main.updateprofile',name=user.username)}} " class="btn btn-primary">Edit Bio</a>
+            <div class="text-centre" id="updates">
+              <a href="{{url_for('main.updateprofile',name=user.username)}} " class="btn btn-primary">Update details</a>
             </div>
           </div>
           {% endif %}
         </div>
       </div>
     </div>
-    <div class="col-md-1">
-    <div class="col-md-5" id="user">
-      {% if current_user %}
-      <h3>You have {{user.pitches.count()}} Pitch</h3>
-      {% for i in posts%}
-      <div class="card pitches">
-        <h4>Title: {{i.title}}</h4>
-        <h6>{{i.post}}</h6>
-        <p>{{i.comment.count()}} Comments</p>
-      </div>
-      <hr>
-
-      {%endfor%}
-      {%else%}
-      <h3>You have ) posts</h3>
-      {%endif%}
-
+    <div class="col-md-8">
+      <h2>Personal Details</h2>
+      <table id="userTable" class="table table-bordered">
+        <tr>
+          <td>Username:</td>
+          <td>{{user.username| capitalize}}</td>
+        </tr>
+        <tr>
+          <td>Email Address:</td>
+          <td>{{user.email}}</td>
+        </tr>
+        <tr>
+          <td>Bio:</td>
+          <td>{{user.bio}}</td>
+        </tr>
+        <tr>
+          <td>Number of Blogs:</td>
+          <td>{{user.blogs.count()}}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
