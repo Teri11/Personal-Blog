@@ -19,7 +19,7 @@
       <div class="card testimonial-card">
         <div class="card-img">
           {% if user.profile_pic_path %}
-          <img  src="{{url_for('static',filename=user.profile_pic_path)}}" style="height:300px;border-radius: 1%"
+          <img  src="{{url_for('static',filename=user.profile_pic_path)}}" style="height:200px;border-radius: 1%"
             class="card-img" alt="woman avatar"><br>
           {%else%}
           <div><i class='fas fa-user-alt' style='font-size:120px;color: #584b53'></i></div>

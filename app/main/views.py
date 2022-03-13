@@ -16,7 +16,7 @@ from ..email import mail_message
 @main.route('/')
 def index():
     quote = get_quote()
-    # blogs = Blog.query.filter_by(title ='title').all()
+    blogs = Blog.query.filter_by(title ='title').all()
 
     return render_template('index.html',quote = quote)
 

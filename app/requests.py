@@ -1,7 +1,7 @@
 import requests
 from .models import Quote
 
-url = "http://quotes.stormconsultancy.co.uk/random.json"
+url = 'http://quotes.stormconsultancy.co.uk/random.json'
 
 def get_quote():
     """
