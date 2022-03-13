@@ -1,3 +1,4 @@
+{% import 'macros.html' as macro %}
 {% extends 'base.html'%}
 
 <!-- Content block -->
@@ -12,6 +13,7 @@
   <div class="container-fluid">
     <div class="banner">
       <h1>Welcome to Personal Blog Website</h1>
+      
       <span class="subheading"><i class="fas fa-quote-left"></i> <em class="quote">{{quote.quote}}</em> <i
           class="fas fa-quote-right"></i></span>
       <h2>{{quote.author}}</h2>
@@ -25,12 +27,27 @@
         </div>
       </form>
     </div>
+    
   </div>
 </div>
-   
+<div class="row" id="blogsContainer">
+  <h1 style="text-align:center" >Thread Blogs</h1>
+ 
 
 
-
+  {% for blog in blogs %}
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 all-blogs">
+    <div class="">
+      <h4><a href="{{url_for('main.blog',id = blog.id)}}">{{blog.title | upper}}</a></h4>
+      <h5>{{blog.description}}</h5>
+      <p>Posted on :<small class="text-muted mr-2"> {{blog.time.strftime('%d-%m-%Y')}}</small> by <a
+        href="user/{{blog.user.username}}">{{blog.user.username}}</a></p>
+      <p> <a class="btn btn-success" href="{{url_for('main.blog',id = blog.id)}}">{{blog.comment.count()}} <i class="far fa-comments"  style='font-size:30px;'></i></a></p>
+  
+    </div>
+  </div>
+  
+  {% endfor %}
 
 
    

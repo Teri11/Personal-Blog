@@ -16,9 +16,9 @@ from ..email import mail_message
 @main.route('/')
 def index():
     quote = get_quote()
-    blogs = Blog.query.filter_by(title ='title').all()
-
-    return render_template('index.html',quote = quote)
+   
+    blogs=Blog.query.all()
+    return render_template('index.html',quote = quote,blogs=blogs)
 
 @main.route('/profile/<name>',methods = ['POST','GET'])
 @login_required
@@ -61,9 +61,11 @@ def new_blog():
         user_id =  current_user._get_current_object().id
         blog = Blog(title=title,description = description, content=content,user_id=user_id)
         blog.save()
-        for subscriber in subscribers:
-            mail_message("New Blog Post","email/new_blog",subscriber.email,blog=blog)
+        # for subscriber in subscribers:
+            # mail_message("New Blog Post","email/new_blog",subscriber.email,blog=blog)
         return redirect(url_for('main.index'))
+   
+
     return render_template('post.html', form = form)
 
 @main.route('/blog/<id>')
