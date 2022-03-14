@@ -3,9 +3,9 @@
 
 <!-- Content block -->
 {%block content%}
-<div class="jumbotron text-center" style="background-color: rgb(34,34,34); color: #fff; padding: 100px 25px;">
+<div class="jumbotron text-center" style="background-color: rgb(34,34,34); color: #fff;">
   <h1>PERSONAL BLOG</h1>
-  <div class="container" style="padding-bottom: 20px;">
+  <div class="container";>
    
   </div>
   
@@ -13,7 +13,7 @@
   <div class="container-fluid">
     <div class="banner">
       <h1>Welcome to Personal Blog Website</h1>
-      
+
       <span class="subheading"><i class="fas fa-quote-left"></i> <em class="quote">{{quote.quote}}</em> <i
           class="fas fa-quote-right"></i></span>
       <h2>{{quote.author}}</h2>
@@ -31,27 +31,30 @@
   </div>
 </div>
 <div class="row" id="blogsContainer">
-  <h1 style="text-align:center" >Thread Blogs</h1>
+  <h1 style="text-align:center" ><strong>Thread Blogs.</strong></h1>
  
 
 
   {% for blog in blogs %}
-  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 all-blogs">
-    <div class="">
-      <h4><a href="{{url_for('main.blog',id = blog.id)}}">{{blog.title | upper}}</a></h4>
-      <h5>{{blog.description}}</h5>
-      <p>Posted on :<small class="text-muted mr-2"> {{blog.time.strftime('%d-%m-%Y')}}</small> by <a
+  <div class="col-lg-3 col-md-4 col-sm-6  all-blogs">
+    <div class="container">
+      <h4><a style="color:green" href="{{url_for('main.blog',id = blog.id)}}">{{blog.title | upper}}</a></h4>
+      <h5 style="color:#fff">{{blog.description}}</h5>
+      <p style="color:#fff">Posted on :<small class="text-muted mr-2"> {{blog.time.strftime('%d-%m-%Y')}}</small> by <a
         href="user/{{blog.user.username}}">{{blog.user.username}}</a></p>
-      <p> <a class="btn btn-success" href="{{url_for('main.blog',id = blog.id)}}">{{blog.comment.count()}} <i class="far fa-comments"  style='font-size:30px;'></i></a></p>
+      <p> <a class="btn btn-success" href="{{url_for('main.blog',id = blog.id)}}">{{blog.comment.count()}} <i style='font-size:20px;'>Add Comment</i></a></p>
   
     </div>
   </div>
   
   {% endfor %}
-
+ 
 
    
   <!-- Copyright -->
+  <div class="container-fluid">
+
+ 
   <div class="text-center p-4" style="background-color:  rgb(34,34,34);">
     <div class="container-fluid">
   <footer class="text-center text-white" style="background-color: rgb(34,34,34);">
@@ -94,6 +97,7 @@
   <!-- Copyright -->
 </footer>
   
+</div>
 </div>
 <!-- End of .container -->
 {%endblock%}
