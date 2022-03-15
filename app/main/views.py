@@ -6,7 +6,6 @@ from ..models import User,Blog,Comment,Subscriber
 from ..import db, photos
 import secrets
 import os
-from PIL import Image
 from .forms import UpdateProfile,CreateBlog
 from ..email import mail_message
 

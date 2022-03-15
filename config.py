@@ -6,7 +6,7 @@ import os
 class Config:
   SQLALCHEMY_TRACK_MODIFICATIONS=True
   SECRET_KEY = os.environ.get('SECRET_KEY')
-  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:1234@localhost/bblog'
+  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/augustine'
   #Simplemde cofigurations
   SIMPLEMDE_JS_IIFE = True
   SIMPLEMDE_USE_CDN = True
@@ -29,11 +29,11 @@ class ProdConfig(Config):
   #   SQLALCHEMY_DATABASE_URI =SQLALCHEMY_DATABASE_URI.replace("postgres://","postgresql://",1)
 
 class DevConfig(Config):
-  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:1234@localhost/bblog'
+  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/augustine'
   DEBUG = True
 
 class TestConfig(Config):
-  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:1234@localhost/bblog_test'
+  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/augustine_test'
 
 config_options = {
   'production':ProdConfig,

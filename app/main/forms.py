@@ -1,14 +1,14 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField,FileAllowed
 from wtforms import StringField,TextAreaField, SubmitField,ValidationError
-from wtforms.validators import Required,Email
+from wtforms.validators import DataRequired,Email
 from flask_login import current_user
 from ..models import User
 
 class UpdateProfile(FlaskForm):
-  username = StringField('Enter Your Username', validators=[Required()])
-  email = StringField('Email Address', validators=[Required(),Email()])
-  bio = TextAreaField('Write a brief bio about you.',validators = [Required()])
+  username = StringField('Enter Your Username', validators=[DataRequired()])
+  email = StringField('Email Address', validators=[DataRequired(),Email()])
+  bio = TextAreaField('Write a brief bio about you.',validators = [DataRequired()])
   submit = SubmitField('Update')
 
   def validate_email(self,email):
@@ -22,7 +22,7 @@ class UpdateProfile(FlaskForm):
         raise ValidationError("The username has already been taken")
 
 class CreateBlog(FlaskForm):
-  title = StringField('Title',validators=[Required()])
-  description = TextAreaField('Blog Description',validators=[Required()])
-  content = TextAreaField('Blog Content',validators=[Required()])
+  title = StringField('Title',validators=[DataRequired()])
+  description = TextAreaField('Blog Description',validators=[DataRequired()])
+  content = TextAreaField('Blog Content',validators=[DataRequired()])
   submit = SubmitField('Post')
