@@ -38,9 +38,9 @@ def create_app(config_name):
   def load_user(user_id):
         return User.query.get(int(user_id))
   db.init_app(app)
-  # with app.app_context():
+  with app.app_context():
         
-  #       db.create_all()
+        db.create_all()
   bootstrap.init_app(app)
   configure_uploads(app,photos)
   mail.init_app(app)
