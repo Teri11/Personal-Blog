@@ -21,8 +21,8 @@ def create_app(config_name):
   app.config.from_object(config_options[config_name])
   config_options[config_name].init_app(app)
   
-#   app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
-#   app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+  app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+  app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
   #Registering bluenprints
   from .auth import auth as authentication_blueprint

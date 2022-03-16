@@ -1,16 +1,9 @@
 import os
-# import re
-# from dotenv import load_dotenv
-# load_dotenv()
-
 class Config:
-  SQLALCHEMY_TRACK_MODIFICATIONS=True
+  SQLALCHEMY_TRACK_MODIFICATIONS=False
   SECRET_KEY = os.environ.get('SECRET_KEY')
   SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/augustine'
-  #Simplemde cofigurations
-  SIMPLEMDE_JS_IIFE = True
-  SIMPLEMDE_USE_CDN = True
-
+ 
   #Email configurations
   MAIL_SERVER = 'smtp.googlemail.com'
   MAIL_PORT = 587
@@ -25,9 +18,7 @@ class Config:
         pass
 class ProdConfig(Config):
   SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-  # if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
-  #   SQLALCHEMY_DATABASE_URI =SQLALCHEMY_DATABASE_URI.replace("postgres://","postgresql://",1)
-
+  
 class DevConfig(Config):
   SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/augustine'
   DEBUG = True
